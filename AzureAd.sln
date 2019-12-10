@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureAd", "AzureAd\AzureAd.csproj", "{FAD44644-06DF-4EB9-B149-9BC8499A518A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FAD44644-06DF-4EB9-B149-9BC8499A518A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAD44644-06DF-4EB9-B149-9BC8499A518A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAD44644-06DF-4EB9-B149-9BC8499A518A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAD44644-06DF-4EB9-B149-9BC8499A518A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8DA9B23F-7BA2-4E86-BFE3-499C4AC19A29}
+	EndGlobalSection
+EndGlobal
