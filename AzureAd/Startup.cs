@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 
 namespace AzureAd
 {
@@ -27,9 +28,11 @@ namespace AzureAd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Read Azure AD configuration from appsettings.json and configure as authentication provider
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
                 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
+            //Require authentication for all pages in the app
             services.AddRazorPages().AddMvcOptions(options =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -66,6 +69,8 @@ namespace AzureAd
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
             });
+
+            app.UseSerilogRequestLogging();
         }
     }
 }
