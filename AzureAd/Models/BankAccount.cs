@@ -12,5 +12,6 @@ namespace AzureAd.Models
         public string Description { get; set; }
         public Currency Currency { get; set; }
         public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
     }
 }

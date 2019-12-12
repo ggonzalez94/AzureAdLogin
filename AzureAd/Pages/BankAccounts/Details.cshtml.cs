@@ -12,9 +12,9 @@ namespace AzureAd.Pages.BankAccounts
 {
     public class DetailsModel : PageModel
     {
-        private readonly AzureAd.Infrastructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DetailsModel(AzureAd.Infrastructure.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context)
         {
             _context = context;
         }

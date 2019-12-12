@@ -12,9 +12,9 @@ namespace AzureAd.Pages.BankAccounts
 {
     public class IndexModel : PageModel
     {
-        private readonly AzureAd.Infrastructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public IndexModel(AzureAd.Infrastructure.ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }

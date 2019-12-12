@@ -12,9 +12,9 @@ namespace AzureAd.Pages.BankAccounts
 {
     public class DeleteModel : PageModel
     {
-        private readonly AzureAd.Infrastructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DeleteModel(AzureAd.Infrastructure.ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
         }

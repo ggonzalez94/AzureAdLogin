@@ -12,15 +12,17 @@ namespace AzureAd.Pages.BankAccounts
 {
     public class CreateModel : PageModel
     {
-        private readonly AzureAd.Infrastructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        public SelectList CustomerNameList { get; set; }
 
-        public CreateModel(AzureAd.Infrastructure.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
+            CustomerNameList = new SelectList(_context.Customers, nameof(Customer.Id), nameof(Customer.Name));
             return Page();
         }
 

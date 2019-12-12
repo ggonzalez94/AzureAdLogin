@@ -13,11 +13,13 @@ namespace AzureAd.Pages.BankAccounts
 {
     public class EditModel : PageModel
     {
-        private readonly AzureAd.Infrastructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        public SelectList CustomerNameList { get; set; }
 
-        public EditModel(AzureAd.Infrastructure.ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context)
         {
             _context = context;
+            CustomerNameList = new SelectList(_context.Customers, nameof(Customer.Id), nameof(Customer.Name));
         }
 
         [BindProperty]

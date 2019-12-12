@@ -31,19 +31,16 @@ namespace AzureAd
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             //Read Azure AD configuration from appsettings.json and configure as authentication provider
             services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
                 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
             //Require authentication for all pages in the app
-            services.AddRazorPages().AddMvcOptions(options =>
+            services.AddRazorPages().AddRazorPagesOptions(options =>
             {
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .Build();
-                options.Filters.Add(new AuthorizeFilter(policy));
+                options.Conventions.AuthorizePage("/Privacy");
             });
         }
 
