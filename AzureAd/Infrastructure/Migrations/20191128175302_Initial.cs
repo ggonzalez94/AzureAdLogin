@@ -11,7 +11,7 @@ namespace AzureAd.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<int>(nullable: false),
                     Address = table.Column<string>(nullable: true),
@@ -27,7 +27,7 @@ namespace AzureAd.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Sqlite:Autoincrement", true),
                     Number = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Currency = table.Column<int>(nullable: false),

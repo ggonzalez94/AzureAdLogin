@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AzureAd.Infraestructure
+namespace AzureAd.Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {

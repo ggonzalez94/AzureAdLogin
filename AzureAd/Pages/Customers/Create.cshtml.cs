@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using AzureAd.Infraestructure;
 using AzureAd.Models;
+using AzureAd.Infrastructure;
 
 namespace AzureAd
 {
     public class CreateModel : PageModel
     {
-        private readonly AzureAd.Infraestructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CreateModel(AzureAd.Infraestructure.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
         }

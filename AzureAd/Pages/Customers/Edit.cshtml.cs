@@ -6,16 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AzureAd.Infraestructure;
 using AzureAd.Models;
+using AzureAd.Infrastructure;
+
 
 namespace AzureAd
 {
     public class EditModel : PageModel
     {
-        private readonly AzureAd.Infraestructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public EditModel(AzureAd.Infraestructure.ApplicationDbContext context)
+        public EditModel(ApplicationDbContext context)
         {
             _context = context;
         }

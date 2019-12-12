@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using AzureAd.Infraestructure;
 using AzureAd.Models;
+using AzureAd.Infrastructure;
 
 namespace AzureAd
 {
     public class DeleteModel : PageModel
     {
-        private readonly AzureAd.Infraestructure.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DeleteModel(AzureAd.Infraestructure.ApplicationDbContext context)
+        public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
         }
