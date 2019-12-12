@@ -18,12 +18,6 @@ namespace AzureAd.Pages
             _logger = logger;
         }
 
-        public async Task<IActionResult> OnPostLogoutAsync()
-        {
-            await HttpContext.SignOutAsync("Identity.External");
-            return RedirectToPage();
-        }
-
         public void OnGet()
         {
 

@@ -38,25 +38,15 @@ namespace AzureAd
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             
-            services.AddAuthentication(sharedOptions =>
+            services.AddAuthentication()
+                .AddAzureAD(options => Configuration.Bind("AzureAd", options)).AddCookie();
+
+            services.AddAuthorization(options =>
             {
-
-            }).AddAzureAD(options => Configuration.Bind("AzureAd", options)).AddCookie();
-
-            //Read Azure AD configuration from appsettings.json and configure as authentication provider
-            //services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
-            //    .AddAzureAD(
-            //        options => Configuration.Bind("AzureAd", options));
-            //services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
-            //{
-            //    options.SignInScheme = IdentityConstants.ExternalScheme;
-            //});
-
-            //Require authentication for all pages in the app
-            services.AddRazorPages().AddRazorPagesOptions(options =>
-            {
-                options.Conventions.AuthorizePage("/Privacy");
+                options.AddPolicy("RequireAdministratorRole", policy => policy.RequireRole("Admin"));
             });
+
+            services.ConfigureRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,5 +79,23 @@ namespace AzureAd
 
             app.UseSerilogRequestLogging();
         }
+    }
+
+    static class CustomExtensionMethods
+    {
+        public static IServiceCollection ConfigureRazorPages(this IServiceCollection services)
+        {
+            //Configure policy to require authentication for certain pages
+            services.AddRazorPages().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AuthorizeFolder("/");
+                options.Conventions.AuthorizePage("/Customers/Create", "RequireAdministratorRole");
+                options.Conventions.AuthorizePage("/Customers/Delete", "RequireAdministratorRole");
+                options.Conventions.AuthorizePage("/Customers/Edit", "RequireAdministratorRole");
+                options.Conventions.AuthorizeFolder("/BankAccounts/", "RequireAdministratorRole");
+            });
+            return services;
+        }
+
     }
 }
