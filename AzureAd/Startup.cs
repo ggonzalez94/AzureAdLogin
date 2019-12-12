@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using AzureAd.Infrastructure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,9 +35,22 @@ namespace AzureAd
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.AddAuthentication(sharedOptions =>
+            {
+
+            }).AddAzureAD(options => Configuration.Bind("AzureAd", options)).AddCookie();
+
             //Read Azure AD configuration from appsettings.json and configure as authentication provider
-            services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
-                .AddAzureAD(options => Configuration.Bind("AzureAd", options));
+            //services.AddAuthentication(AzureADDefaults.AuthenticationScheme)
+            //    .AddAzureAD(
+            //        options => Configuration.Bind("AzureAd", options));
+            //services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+            //{
+            //    options.SignInScheme = IdentityConstants.ExternalScheme;
+            //});
 
             //Require authentication for all pages in the app
             services.AddRazorPages().AddRazorPagesOptions(options =>
