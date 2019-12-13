@@ -7,10 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AzureAd.Infrastructure;
-using AzureAd.Models;
+using Microsoft.AspNetCore.Authorization;
+using AzureAd.Models.Customers;
+using AzureAd.Models.BankAccounts;
 
 namespace AzureAd.Pages.BankAccounts
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;

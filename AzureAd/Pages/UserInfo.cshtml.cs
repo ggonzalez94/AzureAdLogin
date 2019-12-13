@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace AzureAd.Pages
 {
-    public class PrivacyModel : PageModel
+    public class UserInfoModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<UserInfoModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public UserInfoModel(ILogger<UserInfoModel> logger)
         {
             _logger = logger;
         }

@@ -1,4 +1,4 @@
-﻿namespace AzureAd
+﻿namespace AzureAd.Models.Customers
 {
     public enum Gender
     {

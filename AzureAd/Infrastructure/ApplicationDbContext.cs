@@ -1,4 +1,5 @@
-﻿using AzureAd.Models;
+﻿using AzureAd.Models.BankAccounts;
+using AzureAd.Models.Customers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,11 @@ namespace AzureAd.Infrastructure
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Customer>().Property(c => c.Name).IsRequired();
         }
     }
 }

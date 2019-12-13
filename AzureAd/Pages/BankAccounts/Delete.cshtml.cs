@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using AzureAd.Infrastructure;
-using AzureAd.Models;
+using Microsoft.AspNetCore.Authorization;
+using AzureAd.Models.BankAccounts;
 
 namespace AzureAd.Pages.BankAccounts
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly ApplicationDbContext _context;

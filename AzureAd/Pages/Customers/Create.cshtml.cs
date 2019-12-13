@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using AzureAd.Models;
 using AzureAd.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
+using AzureAd.Models.Customers;
 
 namespace AzureAd
 {
+    [Authorize(Roles ="Admin")]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _context;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AzureAd.Infrastructure;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authorization;
@@ -38,10 +39,14 @@ namespace AzureAd
                 .AddAzureAD(options => Configuration.Bind("AzureAd", options));
 
             //Require authentication for all pages in the app
-            services.AddRazorPages().AddRazorPagesOptions(options =>
-            {
-                options.Conventions.AuthorizePage("/Privacy");
-            });
+            services.AddRazorPages()
+                .AddRazorPagesOptions(options =>
+                {
+                options.Conventions.AuthorizeFolder("/");
+                options.Conventions.AllowAnonymousToPage("/Index");
+                })
+               .AddFluentValidation(fvc =>
+                fvc.RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

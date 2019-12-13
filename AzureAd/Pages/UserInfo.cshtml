@@ -1,0 +1,15 @@
+﻿@page
+@model UserInfoModel
+@{
+    ViewData["Title"] = "User Info";
+}
+<h1>@ViewData["Title"]</h1>
+<h2>UserName: @User.Identity.Name</h2>
+<h3>Roles:</h3>
+@foreach (var claim in User.Claims)
+{
+    if (claim.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+    {<b>Role: @claim.Value</b>}
+}
+
+<h4 style="padding-top:50px">This page shows the user name and role</h4>

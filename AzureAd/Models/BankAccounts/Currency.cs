@@ -1,4 +1,4 @@
-﻿namespace AzureAd
+﻿namespace AzureAd.Models.BankAccounts
 {
     public enum Currency
     {

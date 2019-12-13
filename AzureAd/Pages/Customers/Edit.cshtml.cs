@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AzureAd.Models;
 using AzureAd.Infrastructure;
-
+using Microsoft.AspNetCore.Authorization;
+using AzureAd.Models.Customers;
 
 namespace AzureAd
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;
