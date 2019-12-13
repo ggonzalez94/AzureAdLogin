@@ -36,7 +36,9 @@ namespace AzureAd
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+                
             
             services.AddAuthentication()
                 .AddAzureAD(options => Configuration.Bind("AzureAd", options)).AddCookie();
@@ -50,11 +52,12 @@ namespace AzureAd
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                SeedData.Seed(userManager, roleManager);
             }
             else
             {
